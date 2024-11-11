@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
             FaceNextVisibleTarget();
         }
     }
-
     /* This method is for the player to look at the next target in the sorted list that is visible 
      * (not obstructed by any wall). 
      * It uses a loop to cycle through the list of targets 
@@ -70,7 +69,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Make the camera look at the target if visible
                 playerCamera.transform.LookAt(target.transform);
-                return; // Stop after finding the first visible target
+                return;         // Stop after finding the first visible target
             }
         }
     }
@@ -85,13 +84,16 @@ public class PlayerController : MonoBehaviour
      * If the raycast reaches the target without hitting any obstacles, 
      * the target is visible.*/
 
-            private bool IsTargetVisible(Target target)
+    private bool IsTargetVisible(Target target)
     {
-        Vector3 directionToTarget = target.transform.position - playerCamera.transform.position;
-        float distanceToTarget = Vector3.Distance(playerCamera.transform.position, target.transform.position);
+        Vector3 directionToTarget = target.transform.position - 
+            playerCamera.transform.position;
+        float distanceToTarget = Vector3.Distance(playerCamera.transform.position, 
+            target.transform.position);
 
         // Perform a raycast to check if there's an obstacle between the camera and the target
-        if (!Physics.Raycast(playerCamera.transform.position, directionToTarget, distanceToTarget, obstacleLayer))
+        if (!Physics.Raycast(playerCamera.transform.position, 
+            directionToTarget, distanceToTarget, obstacleLayer))
         {
             // If the raycast doesn't hit any obstacle, the target is visible
             return true;

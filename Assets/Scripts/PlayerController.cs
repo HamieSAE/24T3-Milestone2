@@ -18,17 +18,17 @@ public class PlayerController : MonoBehaviour
     private Target[] targets;                       // We need a new empty array to import the sorted target list
     private int currentTargetIndex = 0;             // Int to refer index position of the array above
 
-    /*WALL*/[SerializeField] private Camera playerCamera;       // Reference to the player's camera
+    [SerializeField] private Camera playerCamera;   // Reference to the player's camera
     /*WALL*/[SerializeField] private LayerMask obstacleLayer;   // Layer mask for walls/obstacles
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();  // Get the GameManager component
 
-        targets = FindObjectsOfType<Target>();          // Find all targets in the scene
-        
-        /*-->We are startiung the game by staring at the first target:<--*/
-        
+        targets = gameManager.GetSortedTargets();       // Get the sorted targets from GameManager
+
+        /*-->We are starting the game by looking at the first target:<--*/
+
         FaceNextVisibleTarget();                        // Face the highest HP target first, if not blocked
     }
 
@@ -65,11 +65,10 @@ public class PlayerController : MonoBehaviour
             Target target = targets[currentTargetIndex];
 
             // Check if the target is obstructed by a wall
-            if (IsTargetVisible(target))
-            {
-                // Make the camera look at the target if visible
-                playerCamera.transform.LookAt(target.transform);
-                return;         // Stop after finding the first visible target
+            /*WALL*/if (IsTargetVisible(target))
+            {    /*If not using WALL, keep whats inside the loop but you don't need the if statement to run it*/
+                playerCamera.transform.LookAt(target.transform);    // Make the camera look at the target if visible
+                return;                                             // Stop after finding the first visible target
             }
         }
     }
@@ -86,14 +85,11 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetVisible(Target target)
     {
-        Vector3 directionToTarget = target.transform.position - 
-            playerCamera.transform.position;
-        float distanceToTarget = Vector3.Distance(playerCamera.transform.position, 
-            target.transform.position);
+        Vector3 directionToTarget = target.transform.position - playerCamera.transform.position;
+        float distanceToTarget = Vector3.Distance(playerCamera.transform.position, target.transform.position);
 
         // Perform a raycast to check if there's an obstacle between the camera and the target
-        if (!Physics.Raycast(playerCamera.transform.position, 
-            directionToTarget, distanceToTarget, obstacleLayer))
+        if (!Physics.Raycast(playerCamera.transform.position, directionToTarget, distanceToTarget, obstacleLayer))
         {
             // If the raycast doesn't hit any obstacle, the target is visible
             return true;
@@ -103,54 +99,3 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 }
-    /*If you want to do this and remove the looking at the wall thing, then you can use the following
-      
-using UnityEngine;
-
-public class PlayerController : MonoBehaviour
-{
-    private GameManager gameManager;                // Reference to the GameManager Script to access target arrays
-    private Target[] targets;                       // Array to store sorted targets
-    private int currentTargetIndex = 0;             // Index for tracking current target
-
-    [SerializeField] private Camera playerCamera;   // Reference to the player's camera
-
-    void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();  // Get the GameManager component
-        targets = FindObjectsOfType<Target>();          // Find all targets in the scene
-        FaceNextVisibleTarget();                        // Start by facing the first target
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))            // If Space is pressed, move to the next target
-        {
-            FaceNextVisibleTarget();
-        }
-    }
- 
-    private void FaceNextVisibleTarget()                // Method to face the next target
-    {
-        int targetCount = targets.Length;
-
-        for (int i = 0; i < targetCount; i++)
-        {
-            currentTargetIndex = (currentTargetIndex + 1) % targetCount;    // Cycle to the next target
-
-            Target target = targets[currentTargetIndex];
-
-            //------------------------------------------------------------------------------------------|
-            //----> Since we removed the visibility check, it will face each target sequentially <------|
-            //------------------------------------------------------------------------------------------|
-            playerCamera.transform.LookAt(target.transform);
-            return; // Stop after finding the first target in the sequence
-        }
-    }
-
-    private bool IsTargetVisible(Target target)         // Modified IsTargetVisible method, always returns true
-    {
-        return true;                                    // Always assume the target is visible
-    }
-}
- */

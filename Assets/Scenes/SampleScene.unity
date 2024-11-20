@@ -407,58 +407,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549744544}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &578987629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 578987631}
-  - component: {fileID: 578987630}
-  m_Layer: 0
-  m_Name: '%$ Header'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &578987630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578987629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ebc41a57a824e4ea8c1f1aa483fa7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  headerSettings:
-    headerText: Camera Collection
-    headerColor: {r: 0.8561022, g: 0.8773585, b: 0.5752492, a: 1}
-    textAlignmentOptions: 0
-    fontStyleOptions: 0
-    fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
-    dropShadow: 0
---- !u!4 &578987631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578987629}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &645445289
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6186a3ad5120842abe3c8129acbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 1
+  healthPoints: 5
 --- !u!1 &665196401
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6186a3ad5120842abe3c8129acbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 50
+  healthPoints: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6186a3ad5120842abe3c8129acbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
+  healthPoints: 2
 --- !u!1 &1039895112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6186a3ad5120842abe3c8129acbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 75
+  healthPoints: 4
 --- !u!1 &1251852292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6186a3ad5120842abe3c8129acbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 25
+  healthPoints: 3
 --- !u!54 &1353391831
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2157,7 +2105,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 745181295}
-  - {fileID: 578987631}
   - {fileID: 1854267386}
   - {fileID: 1798635500}
   - {fileID: 1079148530}
